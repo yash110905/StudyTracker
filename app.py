@@ -3,6 +3,7 @@ from database import db
 from flask_login import LoginManager
 from models import User
 from routes.auth import auth
+from routes.courses import courses
 
 app =Flask(__name__)
 app.config["SECRET_KEY"] = "study-tracker-secret"
@@ -32,5 +33,7 @@ def home():
 with app.app_context():
     db.create_all() #will create tables in database 
 app.register_blueprint(auth)    
+app.register_blueprint(courses)
+
 if __name__ == "__main__":
     app.run(debug=True)
